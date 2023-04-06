@@ -34,11 +34,11 @@ import (
 )
 
 var (
-	host      = flag.String("host", "", "HTTP服务器主机名")
-	port      = flag.Int("port", 8080, "HTTP服务器端口")
-	dict      = flag.String("dict", "../data/dictionary.txt", "词典文件")
+	host         = flag.String("host", "", "HTTP服务器主机名")
+	port         = flag.Int("port", 8080, "HTTP服务器端口")
+	dict         = flag.String("dict", "../data/dictionary.txt", "词典文件")
 	staticFolder = flag.String("static_folder", "static", "静态页面存放的目录")
-	segmenter = sego.Segmenter{}
+	segmenter    = sego.Segmenter{}
 )
 
 type JsonResponse struct {
@@ -63,6 +63,7 @@ func JsonRpcServer(w http.ResponseWriter, req *http.Request) {
 	// 整理为输出格式
 	ss := []*Segment{}
 	for _, segment := range segments {
+		fmt.Printf("%s\n", segment.Token().Text())
 		ss = append(ss, &Segment{Text: segment.Token().Text(), Pos: segment.Token().Pos()})
 	}
 	response, _ := json.Marshal(&JsonResponse{Segments: ss})
