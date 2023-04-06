@@ -24,7 +24,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/huichen/sego"
+	"github.com/yanjunhui/sego"
 )
 
 func main() {
